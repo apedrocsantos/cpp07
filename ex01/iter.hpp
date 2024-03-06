@@ -6,7 +6,7 @@
 /*   By: anda-cun <anda-cun@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:44:09 by anda-cun          #+#    #+#             */
-/*   Updated: 2024/02/24 11:05:15 by anda-cun         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:28:02 by anda-cun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 #define ITER_HPP
 #include <iostream>
 
-void iter(int *address, size_t length, int function(int *))
+template <typename T>
+void iter(T *address, size_t length, void (*function)(T const &))
 {
-    while (length--)
-    {
-        function(address);
-        address++;
-    }
+    for (size_t i = 0; i < length; i++)
+        (*function)(address[i]);
 }
 
-int mult(int *address)
+template <typename T>
+void mult(T const &address)
 {
-    return (*address * 2);
+    std::cout << address << "\n";
 }
 
 #endif
