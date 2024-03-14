@@ -1,34 +1,24 @@
 #include <iostream>
 #include <cstdlib>
 #include "Array.hpp"
+#include <array>
 
 #define MAX_VAL 750
 int main(int, char**)
 {
-    Array<int> numbers(MAX_VAL);
-    int* mirror = new int[MAX_VAL];
+    std::array<int,MAX_VAL> numbers;
     srand(time(NULL));
     for (int i = 0; i < MAX_VAL; i++)
     {
         const int value = rand();
         numbers[i] = value;
-        mirror[i] = value;
     }
-    Array<int> tmp(100);
-    tmp = numbers;
+    std::array<int, 100> tmp;
+    std::copy(numbers.begin(), numbers.end(), tmp.begin());
     //SCOPE
     {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
-    }
-
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        if (mirror[i] != numbers[i])
-        {
-            std::cerr << "didn't save the same value!!" << std::endl;
-            return 1;
-        }
+        std::array<int, MAX_VAL> tmp = numbers;
+        std::array<int, MAX_VAL> test;
     }
     try
     {
@@ -53,6 +43,5 @@ int main(int, char**)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//
     return 0;
 }

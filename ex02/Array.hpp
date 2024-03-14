@@ -6,7 +6,7 @@
 /*   By: anda-cun <anda-cun@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:18:56 by anda-cun          #+#    #+#             */
-/*   Updated: 2024/03/06 16:02:54 by anda-cun         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:31:36 by anda-cun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ template <typename T> class Array
     unsigned int size() const {return (_size);};
     T &operator[](int index)
     {
-        if ((index != -1 && index < 0) || index >= (int)_size)
+        if (index < 0 || abs(index) >= (int)_size)
+        {
+            std::cout << _size << " " << index << std::endl;
             throw(std::out_of_range("Index is out of bounds."));
-        if (index == -1)
-            index = _size - 1;
+        }
+        if (index < 0)
+            index = _size - index;
         return (this->_array[index]);
     };
     Array &operator=(const Array &that)
