@@ -6,7 +6,7 @@
 /*   By: anda-cun <anda-cun@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:44:09 by anda-cun          #+#    #+#             */
-/*   Updated: 2024/03/14 13:17:55 by anda-cun         ###   ########.fr       */
+/*   Updated: 2024/03/17 17:26:28 by anda-cun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void iter(T *address, size_t length, void (*function)(T const &))
 }
 
 template <typename T>
-void mult(T const &address)
+void display(T const &address)
 {
     std::cout << address << "\n";
 }

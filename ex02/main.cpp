@@ -1,11 +1,25 @@
 #include <iostream>
 #include <cstdlib>
 #include "Array.hpp"
+#include <array>
 
 #define MAX_VAL 750
+
+class C
+{
+    public:
+    int o;
+    C() {};
+    C(int i) : o(i) {};
+    C &operator=(C const &that) {if (this != &that) this->o = that.o; return *this;};
+    ~C() {};
+};
+
 int main(int, char**)
 {
+    std::cout << "================> Test1\n";
     Array<int> numbers(MAX_VAL);
+    std::cout << numbers[101] << std::endl;
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
     for (int i = 0; i < MAX_VAL; i++)
@@ -36,7 +50,6 @@ int main(int, char**)
     }
     catch(const std::exception& e)
     {
-        std::cout << "CATCH1\n";
         std::cerr << e.what() << '\n';
     }
     try
@@ -45,7 +58,6 @@ int main(int, char**)
     }
     catch(const std::exception& e)
     {
-        std::cout << "CATCH2\n";
         std::cerr << e.what() << '\n';
     }
 
@@ -54,5 +66,53 @@ int main(int, char**)
         numbers[i] = rand();
     }
     delete [] mirror;//
+
+    std::cout << "================> Test2\n";
+
+    Array<int> wtv;
+    std::cout << "wtv size :" << wtv.size() << ", wtv address: " << &wtv << std::endl;
+    try
+    {
+        wtv[0] = 10;
+        std::cout << wtv[0] << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    Array<int> test(10);
+    Array<int> oi = test;
+    std::cout << "test size: " << test.size() << std::endl;
+    std::cout << "oi size: " << oi.size() << std::endl;
+    std::cout << "test[5]: " << test[5] << std::endl;
+    try
+    {
+        test[5] = 80;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    std::cout << test[5] << std::endl;
+    std::cout << oi[5] << std::endl;
+
+    const Array<char> const_array(10);
+    // const_array[4] = 'a'; // Doesn't compile
+    std::cout << "================> Array of classes\n";
+    Array<C>c_array(2);
+    C c1(42);
+    C c2(24);
+    C c3(666);
+    try
+    {
+        c_array[0] = c1;
+        c_array[1] = c2;
+        c_array[2] = c3;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    std::cout << c_array[0].o  << " " << c_array[1].o<< std::endl;
     return 0;
 }
