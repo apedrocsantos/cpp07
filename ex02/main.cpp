@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include "Array.hpp"
-#include <array>
 
 #define MAX_VAL 750
 
@@ -19,7 +18,6 @@ int main(int, char**)
 {
     std::cout << "================> Test1\n";
     Array<int> numbers(MAX_VAL);
-    std::cout << numbers[101] << std::endl;
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
     for (int i = 0; i < MAX_VAL; i++)
@@ -70,7 +68,7 @@ int main(int, char**)
     std::cout << "================> Test2\n";
 
     Array<int> wtv;
-    std::cout << "wtv size :" << wtv.size() << ", wtv address: " << &wtv << std::endl;
+    std::cout << "wtv size :" << wtv.size() << std::endl;
     try
     {
         wtv[0] = 10;

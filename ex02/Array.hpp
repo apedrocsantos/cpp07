@@ -6,7 +6,7 @@
 /*   By: anda-cun <anda-cun@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:18:56 by anda-cun          #+#    #+#             */
-/*   Updated: 2024/03/17 22:09:59 by anda-cun         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:29:10 by anda-cun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ template <typename T> class Array
     unsigned int _size;
     
     public:
-    Array(void) : _array(new T[0]()) {};
+    Array(void) : _array(new T[0]()), _size(0) {};
     Array(unsigned int const n) : _array(new T[n]()), _size(n) {};
     Array (const Array& that) {this->_array = NULL; *this = that;};
     Array &operator=(const Array &that)
